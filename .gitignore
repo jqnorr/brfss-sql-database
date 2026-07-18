@@ -1,0 +1,17 @@
+.Rhistory
+.RData
+.Rproj.user/
+.DS_Store
+
+
+#secrets
+.Renviron
+.env
+*.pem
+*.key
+
+#raw data
+data/
+*.XPT
+*.xpt
+*.zip

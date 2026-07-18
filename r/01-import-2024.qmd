@@ -1,0 +1,38 @@
+---
+title: "import"
+format: html
+---
+
+```{r}
+library(haven)
+library(here)
+library(DBI)
+library(RPostgres)
+```
+
+
+
+import data
+```{r}
+raw_llcp2024 <- read_xpt(
+  here(
+    "data",
+    "LLCP2024.XPT"
+    )
+)
+
+dbWriteTable(
+  conn = con,
+  name = Id(schema = "raw",
+            table = "raw_llcp2024"),
+  value = raw_llcp2024,
+  overwrite = TRUE
+)
+
+dbGetQuery(con, "
+           SELECT COUNT(*)
+           FROM raw.raw_llcp2024;
+           ")
+
+dbDisconnect(con)
+```
